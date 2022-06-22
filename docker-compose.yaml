@@ -1,8 +1,9 @@
-version: '3'
+version: '3.7'
 
 services:
   db:
     image: mongo
+    container_name: db
     ports:
       - 27017:27017
     restart: always
@@ -10,6 +11,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: admin
     tty: true
 
 
