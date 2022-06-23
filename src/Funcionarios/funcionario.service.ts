@@ -7,15 +7,15 @@ import { Funcionario } from "./schemas/funcionario.schema";
 export class FuncionarioService{
     constructor(private readonly funcionarioRepository: FuncionarioRepository){}
 
-    async getUserbyId(id: Number): Promise<Funcionario>{
-        return this.funcionarioRepository.findOne({id})
+    async getUserbyId(id: string): Promise<Funcionario>{
+        
+        return this.funcionarioRepository.findOne({_id: id})
     }
     async getUsers(): Promise<Funcionario[]>{
         return this.funcionarioRepository.find({});
-        // return []
     }
 
-    async createUser(id: Number,nome: String, email: String, senha: String): Promise<Funcionario>{
+    async createUser(id: String,nome: String, email: String, senha: String): Promise<Funcionario>{
         return this.funcionarioRepository.create({
             id,
             nome,
@@ -23,7 +23,10 @@ export class FuncionarioService{
             senha
         })
     }
-    async updateUser(id: Number, funcionarioUpdate: UpdateFuncionarioDto): Promise<Funcionario>{
+    async updateUser(id: String, funcionarioUpdate: UpdateFuncionarioDto): Promise<Funcionario>{
         return this.funcionarioRepository.findOneAndUpdate({id}, funcionarioUpdate);
+    }
+    async deleteUser(id: String){
+        return this.funcionarioRepository.deleteOne({_id: id})
     }
 }

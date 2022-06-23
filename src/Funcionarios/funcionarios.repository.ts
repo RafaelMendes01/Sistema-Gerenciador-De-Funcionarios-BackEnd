@@ -22,4 +22,7 @@ export class FuncionarioRepository{
     async findOneAndUpdate(funcionarioFilterQuery: FilterQuery<Funcionario>, funcionario: Partial<Funcionario>): Promise<Funcionario>{
         return this.FuncionarioModel.findOneAndUpdate(funcionarioFilterQuery, funcionario);
     }
+    async deleteOne(funcionarioFilterQuery: FilterQuery<Funcionario>){
+        return this.FuncionarioModel.deleteOne(funcionarioFilterQuery);
+    }
 }

@@ -1,5 +1,5 @@
 export class CreateFuncionarioDto {
-    id: Number;
+    id: String;
     nome: String;
     email: String;
     senha: String;

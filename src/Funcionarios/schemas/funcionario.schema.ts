@@ -4,9 +4,8 @@ export type FuncionarioDocument = Funcionario & Document
 
 @Schema()
 export class Funcionario {
-
     @Prop()
-    id: Number
+    id: String
 
     @Prop()
     nome: String
