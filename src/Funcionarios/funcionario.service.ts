@@ -15,9 +15,8 @@ export class FuncionarioService{
         return this.funcionarioRepository.find({});
     }
 
-    async createUser(id: String,nome: String, email: String, senha: String): Promise<Funcionario>{
+    async createUser(nome: String, email: String, senha: String): Promise<Funcionario>{
         return this.funcionarioRepository.create({
-            id,
             nome,
             email,
             senha

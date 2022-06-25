@@ -1,7 +1,6 @@
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 
 export class CreateFuncionarioDto {
-    id: String;
     @IsNotEmpty({
         message: 'nome é obrigatorio'
     })

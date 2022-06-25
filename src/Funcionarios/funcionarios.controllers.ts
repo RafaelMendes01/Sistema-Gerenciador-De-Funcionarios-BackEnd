@@ -18,7 +18,7 @@ export class FuncionariosController{
     }
     @Post()
     async createUser(@Body() createFuncionario: CreateFuncionarioDto): Promise<Funcionario>{
-        return this.funcionariosService.createUser(createFuncionario.id, createFuncionario.nome, createFuncionario.email, createFuncionario.senha)
+        return this.funcionariosService.createUser(createFuncionario.nome, createFuncionario.email, createFuncionario.senha)
     }
     @Patch('/:id')
     async updateUser(@Param('id') id:String, @Body() updateFuncionario: UpdateFuncionarioDto): Promise<Funcionario>{
