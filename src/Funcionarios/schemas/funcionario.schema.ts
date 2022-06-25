@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
-import { IsEmail, IsNotEmpty, IsString } from "class-validator"
 
 export type FuncionarioDocument = Funcionario & Document
 
