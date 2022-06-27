@@ -1,7 +1,7 @@
 import { Expose } from "class-transformer";
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 
-export class CreateFuncionarioDto {
+export class UpdateFuncionarioDto {
     @Expose({
         name: 'userName'
     })

@@ -20,10 +20,13 @@ export class FuncionarioRepository{
         return { email: novofuncionario.email, nome: novofuncionario.nome };
     }
 
-    async findOneAndUpdate(funcionarioFilterQuery: FilterQuery<Funcionario>, funcionario: Partial<Funcionario>): Promise<Funcionario>{
-        return this.FuncionarioModel.findOneAndUpdate(funcionarioFilterQuery, funcionario);
+    async findOneAndUpdate(funcionarioFilterQuery: FilterQuery<Funcionario>, funcionario: Partial<Funcionario>): Promise<FuncionarioModel>{
+        const atualizafuncionario = await this.FuncionarioModel.findOneAndUpdate(funcionarioFilterQuery, funcionario);
+
+        return { email: atualizafuncionario.email, nome: atualizafuncionario.nome };
     }
     async deleteOne(funcionarioFilterQuery: FilterQuery<Funcionario>){
         return this.FuncionarioModel.deleteOne(funcionarioFilterQuery);
+        
     }
 }
