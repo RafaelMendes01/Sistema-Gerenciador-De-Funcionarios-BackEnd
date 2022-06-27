@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { UpdateFuncionarioDto } from "./dto/update.funcionario.dto";
 import { FuncionarioRepository } from "./funcionarios.repository";
-import { Funcionario } from "./schemas/funcionario.schema";
+import { Funcionario, FuncionarioModel } from "./schemas/funcionario.schema";
 
 @Injectable()
 export class FuncionarioService{
@@ -15,7 +15,7 @@ export class FuncionarioService{
         return this.funcionarioRepository.find({});
     }
 
-    async createUser(nome: String, email: String, senha: String): Promise<Funcionario>{
+    async createUser(nome: String, email: String, senha: String): Promise<FuncionarioModel>{
         return this.funcionarioRepository.create({
             nome,
             email,

@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { FilterQuery, Model } from "mongoose";
-import { Funcionario, FuncionarioDocument } from "./schemas/funcionario.schema";
+import { Funcionario, FuncionarioDocument, FuncionarioModel } from "./schemas/funcionario.schema";
 
 
 @Injectable()
@@ -14,9 +14,10 @@ export class FuncionarioRepository{
     async find(funcionarioFilterQuery: FilterQuery<Funcionario>): Promise<Funcionario[]>{
         return this.FuncionarioModel.find(funcionarioFilterQuery)
     }
-    async create(funcionario: Funcionario): Promise<Funcionario>{
-        const novofuncionario = new this.FuncionarioModel(funcionario);
-        return novofuncionario.save()
+    async create(funcionario: Funcionario): Promise<FuncionarioModel>{
+        const novofuncionario = await this.FuncionarioModel.create(funcionario);
+
+        return { email: novofuncionario.email, nome: novofuncionario.nome };
     }
 
     async findOneAndUpdate(funcionarioFilterQuery: FilterQuery<Funcionario>, funcionario: Partial<Funcionario>): Promise<Funcionario>{

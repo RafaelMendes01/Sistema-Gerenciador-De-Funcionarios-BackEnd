@@ -1,6 +1,10 @@
+import { Expose } from "class-transformer";
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 
 export class CreateFuncionarioDto {
+    @Expose({
+        name: 'userName'
+    })
     @IsNotEmpty({
         message: 'nome é obrigatorio'
     })
@@ -15,6 +19,9 @@ export class CreateFuncionarioDto {
         message: 'e necessario inserir um email valido'
     })
     email: String;
+    @Expose({
+        name: 'passWord'
+    })
     @IsNotEmpty({
         message: 'senha é obrigatoria'
     })

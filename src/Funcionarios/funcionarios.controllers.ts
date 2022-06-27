@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/commo
 import { CreateFuncionarioDto } from "./dto/create.funcionario.dto";
 import { UpdateFuncionarioDto } from "./dto/update.funcionario.dto";
 import { FuncionarioService } from "./funcionario.service";
-import { Funcionario } from "./schemas/funcionario.schema";
+import { Funcionario, FuncionarioModel } from "./schemas/funcionario.schema";
 
 @Controller('funcionarios')
 export class FuncionariosController{
@@ -17,7 +17,7 @@ export class FuncionariosController{
         return this.funcionariosService.getUsers();
     }
     @Post()
-    async createUser(@Body() createFuncionario: CreateFuncionarioDto): Promise<Funcionario>{
+    async createUser(@Body() createFuncionario: CreateFuncionarioDto): Promise<FuncionarioModel>{
         return this.funcionariosService.createUser(createFuncionario.nome, createFuncionario.email, createFuncionario.senha)
     }
     @Patch('/:id')
