@@ -22,7 +22,7 @@ export class FuncionarioService{
             senha
         })
     }
-    async updateUser(id: String, funcionarioUpdate: UpdateFuncionarioDto): Promise<Funcionario>{
+    async updateUser(id: String, funcionarioUpdate: UpdateFuncionarioDto): Promise<FuncionarioModel>{
         return this.funcionarioRepository.findOneAndUpdate({id}, funcionarioUpdate);
     }
     async deleteUser(id: String){
