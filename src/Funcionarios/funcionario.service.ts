@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { encodePassWord } from "src/utils/bcrypt";
 import { UpdateFuncionarioDto } from "./dto/update.funcionario.dto";
 import { FuncionarioRepository } from "./funcionarios.repository";
 import { Funcionario, FuncionarioModel } from "./schemas/funcionario.schema";
@@ -19,7 +20,7 @@ export class FuncionarioService{
         return this.funcionarioRepository.create({
             nome,
             email,
-            senha
+            senha: await encodePassWord(senha)
         })
     }
     async updateUser(id: String, funcionarioUpdate: UpdateFuncionarioDto): Promise<FuncionarioModel>{
