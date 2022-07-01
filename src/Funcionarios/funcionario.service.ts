@@ -8,9 +8,9 @@ import { Funcionario, FuncionarioModel } from "./schemas/funcionario.schema";
 export class FuncionarioService{
     constructor(private readonly funcionarioRepository: FuncionarioRepository){}
 
-    async getUserbyId(id: string): Promise<Funcionario>{
+    async getUserbyEmail(email: String): Promise<Funcionario>{
         
-        return this.funcionarioRepository.findOne({_id: id})
+        return this.funcionarioRepository.findOne({email})
     }
     async getUsers(): Promise<Funcionario[]>{
         return this.funcionarioRepository.find({});
@@ -23,10 +23,10 @@ export class FuncionarioService{
             senha: await encodePassWord(senha)
         })
     }
-    async updateUser(id: String, funcionarioUpdate: UpdateFuncionarioDto): Promise<FuncionarioModel>{
-        return this.funcionarioRepository.findOneAndUpdate({id}, funcionarioUpdate);
+    async updateUser(email: String, funcionarioUpdate: UpdateFuncionarioDto): Promise<FuncionarioModel>{
+        return this.funcionarioRepository.findOneAndUpdate({email}, funcionarioUpdate);
     }
-    async deleteUser(id: String){
-        return this.funcionarioRepository.deleteOne({_id: id})
+    async deleteUser(email: String){
+        return this.funcionarioRepository.deleteOne({email})
     }
 }

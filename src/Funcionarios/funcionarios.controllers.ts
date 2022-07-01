@@ -8,9 +8,9 @@ import { Funcionario, FuncionarioModel } from "./schemas/funcionario.schema";
 export class FuncionariosController{
     constructor(private readonly funcionariosService: FuncionarioService){}
 
-    @Get('/:id')
-    async getUser(@Param('id') id:string): Promise<Funcionario>{
-        return this.funcionariosService.getUserbyId(id);
+    @Get('/:email')
+    async getUser(@Param('email') email:String): Promise<Funcionario>{
+        return this.funcionariosService.getUserbyEmail(email);
     }
     @Get('/')
     async getUsers(): Promise<Funcionario[]>{
@@ -20,13 +20,13 @@ export class FuncionariosController{
     async createUser(@Body() createFuncionario: CreateFuncionarioDto): Promise<FuncionarioModel>{
         return this.funcionariosService.createUser(createFuncionario.nome, createFuncionario.email, createFuncionario.senha)
     }
-    @Patch('/:id')
-    async updateUser(@Param('id') id:String, @Body() updateFuncionario: UpdateFuncionarioDto): Promise<FuncionarioModel>{
-        return this.funcionariosService.updateUser(id, updateFuncionario);
+    @Patch('/:email')
+    async updateUser(@Param('email') email:String, @Body() updateFuncionario: UpdateFuncionarioDto): Promise<FuncionarioModel>{
+        return this.funcionariosService.updateUser(email, updateFuncionario);
     }
-    @Delete('/:id')
-    async deleteUser(@Param('id') id:string){
-        return this.funcionariosService.deleteUser(id);
+    @Delete('/:email')
+    async deleteUser(@Param('email') email:String){
+        return this.funcionariosService.deleteUser(email);
     }
 }
 
