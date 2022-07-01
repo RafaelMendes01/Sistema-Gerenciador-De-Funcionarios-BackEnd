@@ -1,32 +1,32 @@
 import { Injectable } from "@nestjs/common";
+import { encodePassWord } from "src/utils/bcrypt";
 import { UpdateFuncionarioDto } from "./dto/update.funcionario.dto";
 import { FuncionarioRepository } from "./funcionarios.repository";
-import { Funcionario } from "./schemas/funcionario.schema";
+import { Funcionario, FuncionarioModel } from "./schemas/funcionario.schema";
 
 @Injectable()
 export class FuncionarioService{
     constructor(private readonly funcionarioRepository: FuncionarioRepository){}
 
-    async getUserbyId(id: string): Promise<Funcionario>{
+    async getUserbyEmail(email: string): Promise<Funcionario>{
         
-        return this.funcionarioRepository.findOne({_id: id})
+        return this.funcionarioRepository.findOne({email})
     }
     async getUsers(): Promise<Funcionario[]>{
         return this.funcionarioRepository.find({});
     }
 
-    async createUser(id: String,nome: String, email: String, senha: String): Promise<Funcionario>{
+    async createUser(nome: string, email: string, senha: string): Promise<FuncionarioModel>{
         return this.funcionarioRepository.create({
-            id,
             nome,
             email,
-            senha
+            senha: await encodePassWord(senha)
         })
     }
-    async updateUser(id: String, funcionarioUpdate: UpdateFuncionarioDto): Promise<Funcionario>{
-        return this.funcionarioRepository.findOneAndUpdate({id}, funcionarioUpdate);
+    async updateUser(email: string, funcionarioUpdate: UpdateFuncionarioDto): Promise<FuncionarioModel>{
+        return this.funcionarioRepository.findOneAndUpdate({email}, funcionarioUpdate);
     }
-    async deleteUser(id: String){
-        return this.funcionarioRepository.deleteOne({_id: id})
+    async deleteUser(email: string){
+        return this.funcionarioRepository.deleteOne({email})
     }
 }

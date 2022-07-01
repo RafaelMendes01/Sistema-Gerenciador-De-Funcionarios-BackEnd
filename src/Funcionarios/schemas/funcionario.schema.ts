@@ -1,20 +1,26 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
+import { ApiProperty, ApiTags } from "@nestjs/swagger";
+
+export interface FuncionarioModel {
+    nome: string;
+    email: string; 
+    senha?: string;
+} 
 
 export type FuncionarioDocument = Funcionario & Document
 
 @Schema()
-export class Funcionario {
+@ApiTags('Funcionarios')
+export class Funcionario implements FuncionarioModel {
     @Prop()
-    id: String
-
+    @ApiProperty()
+    nome: string
     @Prop()
-    nome: String
-
+    @ApiProperty()
+    email: string
     @Prop()
-    email: String
-
-    @Prop()
-    senha: String
+    @ApiProperty()
+    senha: string
 }
 
 export const funcionarioSchema = SchemaFactory.createForClass(Funcionario);

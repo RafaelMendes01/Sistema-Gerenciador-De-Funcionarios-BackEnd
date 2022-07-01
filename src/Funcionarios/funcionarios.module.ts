@@ -8,7 +8,8 @@ import { Funcionario, funcionarioSchema } from "./schemas/funcionario.schema";
 @Module({
     imports: [MongooseModule.forFeature([{name: Funcionario.name, schema: funcionarioSchema}])],
     controllers: [ FuncionariosController],
-    providers: [FuncionarioService, FuncionarioRepository]
+    providers: [FuncionarioService, FuncionarioRepository],
+    exports: [FuncionarioService,]
 })
 
 export class FuncionariosModule{}
