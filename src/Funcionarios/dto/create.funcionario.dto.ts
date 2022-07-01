@@ -11,14 +11,14 @@ export class CreateFuncionarioDto {
     @IsString({
         message: 'nome precisa ser do tipo String'
     })
-    nome: String;
+    nome: string;
     @IsNotEmpty({
         message: 'email é obrigatorio'
     })
     @IsEmail({
         message: 'e necessario inserir um email valido'
     })
-    email: String;
+    email: string;
     @Expose({
         name: 'passWord'
     })
@@ -28,5 +28,5 @@ export class CreateFuncionarioDto {
     @IsString({
         message: 'senha precisa ser do tipo String'
     })
-    senha: String;
+    senha: string;
 }

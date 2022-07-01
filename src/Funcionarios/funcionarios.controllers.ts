@@ -9,7 +9,7 @@ export class FuncionariosController{
     constructor(private readonly funcionariosService: FuncionarioService){}
 
     @Get('/:email')
-    async getUser(@Param('email') email:String): Promise<Funcionario>{
+    async getUser(@Param('email') email:string): Promise<Funcionario>{
         return this.funcionariosService.getUserbyEmail(email);
     }
     @Get('/')
@@ -21,11 +21,11 @@ export class FuncionariosController{
         return this.funcionariosService.createUser(createFuncionario.nome, createFuncionario.email, createFuncionario.senha)
     }
     @Patch('/:email')
-    async updateUser(@Param('email') email:String, @Body() updateFuncionario: UpdateFuncionarioDto): Promise<FuncionarioModel>{
+    async updateUser(@Param('email') email:string, @Body() updateFuncionario: UpdateFuncionarioDto): Promise<FuncionarioModel>{
         return this.funcionariosService.updateUser(email, updateFuncionario);
     }
     @Delete('/:email')
-    async deleteUser(@Param('email') email:String){
+    async deleteUser(@Param('email') email:string){
         return this.funcionariosService.deleteUser(email);
     }
 }
