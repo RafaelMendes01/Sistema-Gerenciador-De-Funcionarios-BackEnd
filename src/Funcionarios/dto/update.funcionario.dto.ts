@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 
 export class UpdateFuncionarioDto {
     @Expose({
-        name: 'userName'
+        name: 'username'
     })
     @IsNotEmpty({
         message: 'nome é obrigatorio'
@@ -20,7 +20,7 @@ export class UpdateFuncionarioDto {
     })
     email: string;
     @Expose({
-        name: 'passWord'
+        name: 'password'
     })
     @IsNotEmpty({
         message: 'senha é obrigatoria'
