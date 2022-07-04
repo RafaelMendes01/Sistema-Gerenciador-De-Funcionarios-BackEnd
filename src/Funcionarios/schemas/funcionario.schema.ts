@@ -15,7 +15,10 @@ export class Funcionario implements FuncionarioModel {
     @Prop()
     @ApiProperty()
     nome: string
-    @Prop()
+    @Prop({
+        unique: true,
+
+    })
     @ApiProperty()
     email: string
     @Prop()
