@@ -24,6 +24,7 @@ export class FuncionarioService{
         })
     }
     async updateUser(email: string, funcionarioUpdate: UpdateFuncionarioDto): Promise<FuncionarioModel>{
+        funcionarioUpdate.senha = await encodePassWord(funcionarioUpdate.senha);
         return this.funcionarioRepository.findOneAndUpdate({email}, funcionarioUpdate);
     }
     async deleteUser(email: string){
