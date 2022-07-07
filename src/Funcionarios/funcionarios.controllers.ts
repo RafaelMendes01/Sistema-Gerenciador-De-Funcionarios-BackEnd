@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
 import { IsPublic } from "src/auth/decorators/is-public-decorator";
+import { Roles } from "src/auth/decorators/roles-decorator";
+import { Role } from "src/enum/role-enum";
 import { CreateFuncionarioDto } from "./dto/create.funcionario.dto";
 import { UpdateFuncionarioDto } from "./dto/update.funcionario.dto";
 import { FuncionarioService } from "./funcionario.service";
@@ -14,6 +16,7 @@ export class FuncionariosController{
         return this.funcionariosService.getUserbyEmail(email);
     }
     @IsPublic()
+    @Roles(Role.ADMIN)
     @Get('/')
     async getUsers(): Promise<Funcionario[]>{
         return this.funcionariosService.getUsers();
