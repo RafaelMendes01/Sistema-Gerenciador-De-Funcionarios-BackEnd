@@ -15,7 +15,6 @@ export class AuthController {
     @HttpCode(HttpStatus.OK)
     @UseGuards(LocalAuthGuard, RolesGuard)
     login(@Request() req: authRequest){
-        console.log(req.user)
         return this.authservice.login(req.user)
     }
 }

@@ -15,8 +15,8 @@ export class FuncionariosController{
     async getUser(@Param('email') email:string): Promise<Funcionario>{
         return this.funcionariosService.getUserbyEmail(email);
     }
-    @IsPublic()
     @Roles(Role.ADMIN)
+    @IsPublic()
     @Get('/')
     async getUsers(): Promise<Funcionario[]>{
         return this.funcionariosService.getUsers();
@@ -24,7 +24,7 @@ export class FuncionariosController{
     @IsPublic()
     @Post()
     async createUser(@Body() createFuncionario: CreateFuncionarioDto): Promise<FuncionarioModel>{
-        return this.funcionariosService.createUser(createFuncionario.nome, createFuncionario.email, createFuncionario.senha)
+        return this.funcionariosService.createUser(createFuncionario.nome, createFuncionario.email, createFuncionario.senha, createFuncionario.role)
     }
     @Patch('/:email')
     async updateUser(@Param('email') email:string, @Body() updateFuncionario: UpdateFuncionarioDto): Promise<FuncionarioModel>{

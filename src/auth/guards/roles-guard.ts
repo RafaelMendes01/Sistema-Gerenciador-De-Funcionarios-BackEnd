@@ -1,25 +1,26 @@
-import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
-import { Reflector } from "@nestjs/core";
+import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
+
 import { Observable } from "rxjs";
-import { Role } from "src/enum/role-enum";
-import { ROLES_KEY } from "../decorators/roles-decorator";
+import { authRequest } from "../models/auth-request";
+import { JwtPayload } from "../models/jwtpayload";
+
 
 @Injectable()
 export class RolesGuard implements CanActivate{
-    constructor(private reflector: Reflector){}
-    canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
-        const requiredRoles = this.reflector.getAllAndOverride<Role[]>(ROLES_KEY, [
-            context.getHandler(),
-            context.getClass()
-
-        ])
-
-        if(!requiredRoles){
-            return true;
-        }
-
-        const { user } = context.switchToHttp().getRequest();
-
-        return requiredRoles.some((role) => user.role?.includes(role)) 
+    canActivate(context: ExecutionContext,): boolean | Promise<boolean> | Observable<boolean> {
+        const request: authRequest = context.switchToHttp().getRequest()
+        const jwtToken = request.headers.authorization
+    
+        const decode = jwtToken.split('.')[1]
+        const decodeBuffer = Buffer.from(decode, 'base64')
+        const role = JSON.parse(decodeBuffer.toString()) as JwtPayload
+        console.log(role)
+     
+        if(role.user.role === 'admin') {
+          return true; 
+    
+        } else {
+          throw new UnauthorizedException('Esta requisição só poderá ser feita por um usuário administrativo');
+         }
+      } 
     }
-}
