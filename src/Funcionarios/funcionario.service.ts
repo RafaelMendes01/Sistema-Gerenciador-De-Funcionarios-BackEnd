@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { Role } from "src/enum/role-enum";
 import { encodePassWord } from "src/utils/bcrypt";
 import { UpdateFuncionarioDto } from "./dto/update.funcionario.dto";
 import { FuncionarioRepository } from "./funcionarios.repository";
@@ -16,14 +17,16 @@ export class FuncionarioService{
         return this.funcionarioRepository.find({});
     }
 
-    async createUser(nome: string, email: string, senha: string): Promise<FuncionarioModel>{
+    async createUser(nome: string, email: string, senha: string, role: Role): Promise<FuncionarioModel>{
         return this.funcionarioRepository.create({
             nome,
             email,
-            senha: await encodePassWord(senha)
+            senha: await encodePassWord(senha),
+            role
         })
     }
     async updateUser(email: string, funcionarioUpdate: UpdateFuncionarioDto): Promise<FuncionarioModel>{
+        funcionarioUpdate.senha = await encodePassWord(funcionarioUpdate.senha);
         return this.funcionarioRepository.findOneAndUpdate({email}, funcionarioUpdate);
     }
     async deleteUser(email: string){

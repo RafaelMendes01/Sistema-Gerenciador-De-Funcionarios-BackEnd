@@ -14,15 +14,16 @@ export class AuthService {
   login(user: Funcionario): UserToken {
     const payload:UserPayload = {
       email: user.email,
-      name: user.nome
+      name: user.nome,
+      role: user.role
 
     };
-    const jwtToken = this.jwtService.sign(payload);
+    const jwtToken = this.jwtService.sign(user);
 
     return{
       access_token: jwtToken,
     }
-}
+  }
 
   async validateUser(email: string, password: string){
     const user = await this.FuncionarioService.getUserbyEmail(email);
@@ -32,7 +33,7 @@ export class AuthService {
 
       if (isPasswordValid) {
         return {
-          ...user
+          user
         };
       }
     }

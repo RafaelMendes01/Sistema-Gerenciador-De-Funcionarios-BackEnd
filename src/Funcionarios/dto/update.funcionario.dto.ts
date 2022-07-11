@@ -1,5 +1,6 @@
 import { Expose } from "class-transformer";
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { Role } from "src/enum/role-enum";
 
 export class UpdateFuncionarioDto {
     @Expose({
@@ -29,4 +30,8 @@ export class UpdateFuncionarioDto {
         message: 'senha precisa ser do tipo String'
     })
     senha: string;
+    @IsNotEmpty({
+        message: 'role é obrigatoria'
+    })
+    role: Role;
 }
