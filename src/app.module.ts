@@ -7,7 +7,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-guards';
 import { RolesGuard } from './auth/guards/roles-guard';
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://root:root@localhost:27017/db-funcionarios?authSource=admin'), FuncionariosModule, AuthModule],
+  imports: [MongooseModule.forRoot('mongodb://root:root@db:27017/admin?authSource=admin'), FuncionariosModule, AuthModule],
   controllers: [],
   providers: [{
     provide: APP_GUARD,
