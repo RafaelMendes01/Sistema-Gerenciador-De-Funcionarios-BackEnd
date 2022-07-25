@@ -1,4 +1,5 @@
 import { Controller, HttpCode, HttpStatus, Post, Request, UseGuards } from '@nestjs/common';
+import { SocketGateway } from 'src/socket/socket.gateway';
 import { AuthService } from './auth.service';
 import { IsPublic } from './decorators/is-public-decorator';
 import { LocalAuthGuard } from './guards/local-auth-guards';
@@ -7,7 +8,8 @@ import { authRequest } from './models/auth-request';
 
 @Controller()
 export class AuthController {
-    constructor( private readonly authservice: AuthService){}
+    constructor( private readonly authservice: AuthService,
+        private readonly socketGateway: SocketGateway,){}
 
 
     @IsPublic()
@@ -15,6 +17,7 @@ export class AuthController {
     @HttpCode(HttpStatus.OK)
     @UseGuards(LocalAuthGuard, RolesGuard)
     login(@Request() req: authRequest){
+        this.socketGateway.emitUserLogged()
         return this.authservice.login(req.user)
     }
 }

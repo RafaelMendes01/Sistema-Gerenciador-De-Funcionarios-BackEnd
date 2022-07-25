@@ -26,6 +26,7 @@ services:
       PORT : 3000
     ports:
       - 3000:3000
+      - 3001:3001
     restart: always
     links:
       - db
@@ -41,8 +42,8 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./.docker/mongodb/dbdata:/data/db
-      - ./.docker/mongodb/configdb:/data/configdb
+      - mongodb_server_data:/data/db
+      - mongodb_server_data:/data/configdb
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
@@ -50,6 +51,9 @@ services:
     networks: 
       - projeto-gerenciador-funcionarios
 
+volumes:
+  mongodb_server_data: 
+  
 networks:
   projeto-gerenciador-funcionarios:
     driver: bridge
