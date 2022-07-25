@@ -23,12 +23,12 @@ export class FuncionariosController{
     }
     @Roles(Role.ADMIN)
     @Post()
-    async createUser(@Body() createFuncionario: CreateFuncionarioDto): Promise<FuncionarioModel>{
-        return this.funcionariosService.createUser(createFuncionario.nome, createFuncionario.email, createFuncionario.senha, createFuncionario.role)
+    async createUser(@Body() createFuncionario: CreateFuncionarioDto): Promise<string>{
+        return await this.funcionariosService.createUser(createFuncionario.nome, createFuncionario.email, createFuncionario.senha, createFuncionario.role)
     }
     @Roles(Role.ADMIN)
     @Patch('/:email')
-    async updateUser(@Param('email') email:string, @Body() updateFuncionario: UpdateFuncionarioDto): Promise<FuncionarioModel>{
+    async updateUser(@Param('email') email:string, @Body() updateFuncionario: UpdateFuncionarioDto): Promise<string>{
         return this.funcionariosService.updateUser(email, updateFuncionario);
     }
     @Roles(Role.ADMIN)
