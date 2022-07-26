@@ -1,11 +1,10 @@
 import { Injectable } from "@nestjs/common";
-import e from "cors";
-import { Role } from "src/enum/role-enum";
-import { SocketGateway } from "src/socket/socket.gateway";
-import { encodePassWord } from "src/utils/bcrypt";
+import { Role } from "../enum/role-enum";
 import { UpdateFuncionarioDto } from "./dto/update.funcionario.dto";
 import { FuncionarioRepository } from "./funcionarios.repository";
-import { Funcionario, FuncionarioModel } from "./schemas/funcionario.schema";
+import { Funcionario } from "./schemas/funcionario.schema";
+import { SocketGateway } from "../socket/socket.gateway";
+import { encodePassWord } from "../utils/bcrypt";
 
 @Injectable()
 export class FuncionarioService {

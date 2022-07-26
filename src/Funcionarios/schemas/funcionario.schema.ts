@@ -1,13 +1,13 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
 import { ApiProperty, ApiTags } from "@nestjs/swagger";
-import { Role } from "src/enum/role-enum";
+import { Role } from "../../enum/role-enum";
 
 export interface FuncionarioModel {
     nome: string;
-    email: string; 
+    email: string;
     senha?: string;
     role: Role;
-} 
+}
 
 export type FuncionarioDocument = Funcionario & Document
 
@@ -30,6 +30,13 @@ export class Funcionario implements FuncionarioModel {
     @Prop()
     @ApiProperty()
     role: Role;
+
+    constructor(user?: Partial<Funcionario>) {
+        this.nome = user?.nome;
+        this.email = user?.email;
+        this.senha = user?.senha;
+        this.role = user?.role;
+    }
 }
 
 export const funcionarioSchema = SchemaFactory.createForClass(Funcionario);
