@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { FuncionarioService } from 'src/Funcionarios/funcionario.service';
-import { Funcionario } from 'src/Funcionarios/schemas/funcionario.schema';
+import { FuncionarioService } from '../Funcionarios/funcionario.service';
+import { Funcionario } from '../Funcionarios/schemas/funcionario.schema';
 import { UserPayload } from './models/user-payload';
 import { UserToken } from './models/user-token';
 @Injectable()

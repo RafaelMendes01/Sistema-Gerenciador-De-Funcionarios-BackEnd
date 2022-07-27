@@ -39,7 +39,6 @@ export class SocketGateway implements OnGatewayInit {
   }
   emitnewUser(email: string) {
     this.server.emit('new-user', email);
-    console.log(`criado ${email}`);
   }
 
   emitUserLogged() {
