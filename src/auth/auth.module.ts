@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-import { FuncionariosModule } from 'src/Funcionarios/funcionarios.module';
-import { SocketGateway } from 'src/socket/socket.gateway';
+import { FuncionariosModule } from '../Funcionarios/funcionarios.module';
+import { SocketGateway } from '../socket/socket.gateway';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { RolesGuard } from './guards/roles-guard';

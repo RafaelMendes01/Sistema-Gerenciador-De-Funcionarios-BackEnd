@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { SocketGateway } from "src/socket/socket.gateway";
+import { SocketGateway } from "../socket/socket.gateway";
 import { FuncionarioService } from "./funcionario.service";
 import { FuncionariosController } from "./funcionarios.controllers";
 import { FuncionarioRepository } from "./funcionarios.repository";

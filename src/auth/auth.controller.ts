@@ -1,5 +1,5 @@
 import { Controller, HttpCode, HttpStatus, Post, Request, UseGuards } from '@nestjs/common';
-import { SocketGateway } from 'src/socket/socket.gateway';
+import { SocketGateway } from '../socket/socket.gateway';
 import { AuthService } from './auth.service';
 import { IsPublic } from './decorators/is-public-decorator';
 import { LocalAuthGuard } from './guards/local-auth-guards';
