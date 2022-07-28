@@ -22,7 +22,7 @@ services:
     entrypoint: sh ./.docker/entrypoint.sh
     container_name: back-end
     environment:
-      KEY_MASTER_JWT: tallos123
+      JWT_SECRET: tallos123
       PORT : 3000
     ports:
       - 3000:3000
