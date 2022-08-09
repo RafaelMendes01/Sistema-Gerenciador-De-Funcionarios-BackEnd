@@ -12,7 +12,7 @@ import { LocalStrategy } from './strategy/local-strategy';
 @Module({
   imports: [FuncionariosModule, JwtModule.register({
     secret: process.env.JWT_SECRET,
-    signOptions: {expiresIn: '300d'}
+    signOptions: {expiresIn: '1d'}
   })],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy, RolesGuard, SocketGateway]
