@@ -41,8 +41,8 @@ export class SocketGateway implements OnGatewayInit {
     this.server.emit('new-user', email);
   }
 
-  emitUserLogged() {
-    this.server.emit('is-logged');
-    console.log('user logado');
+  emitUserLogged(email:object) {
+    this.server.emit('is-logged',{email});
+   
   }
 }
